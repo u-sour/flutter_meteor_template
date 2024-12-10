@@ -50,7 +50,7 @@ class AppRouter {
           builder: (context, state, navigationShell) {
             return PopScope(
                 canPop: false,
-                onPopInvoked: (didPop) {
+                onPopInvokedWithResult: (didPop, result) {
                   GlobalService.openDialog(
                     context: context,
                     contentWidget: ConfirmDialogWidget(
