@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_printer/flutter_bluetooth_printer.dart';
-import 'package:flutter_template/providers/printer_provider.dart';
 import 'package:provider/provider.dart';
+import '../../providers/printer_provider.dart';
 import '../../router/route_utils.dart';
 import '../../services/global_service.dart';
+import '../../storages/printer_storage.dart';
 import '../../widgets/app_bar_widget.dart';
 import '../../widgets/printer/printing_progress_widget.dart';
 
@@ -23,7 +24,23 @@ class PrinterScreen extends StatelessWidget {
             Expanded(
               child: Receipt(
                   backgroundColor: Colors.grey.shade200,
-                  onInitialized: (controller) {
+                  onInitialized: (controller) async {
+                    // check & set printer paper size
+                    final PrinterStorage printerStorage = PrinterStorage();
+                    final String printerPaperSize =
+                        await printerStorage.getPrinterPaperSize();
+                    late PaperSize paperSize;
+                    if (printerPaperSize.isNotEmpty) {
+                      //check & set printer paper size
+                      switch (printerPaperSize) {
+                        case '80mm':
+                          paperSize = PaperSize.mm80;
+                          break;
+                        default:
+                          paperSize = PaperSize.mm58;
+                      }
+                    }
+                    controller.paperSize = paperSize;
                     readProvider.controller = controller;
                   },
                   builder: (context) => child),
