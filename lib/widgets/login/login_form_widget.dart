@@ -44,152 +44,86 @@ class LoginFormWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: AppStyleDefaultProperties.h),
-                orientation == Orientation.portrait
-                    ? Column(
-                        children: [
-                          Selector<LoginFormProvider, String>(
-                            selector: (_, state) => state.username,
-                            builder: (context, username, child) =>
-                                FormBuilderTextField(
-                              name: 'username',
-                              initialValue: username,
-                              decoration: ResponsiveLayout.isDesktop(context)
-                                  ? InputDecoration(
-                                      prefixIcon:
-                                          const Icon(AppDefaultIcons.username),
-                                      labelText: context
-                                          .tr('$_prefixFromLabel.username'))
-                                  : InputDecoration(
-                                      prefixIcon:
-                                          const Icon(AppDefaultIcons.username),
-                                      hintText: context
-                                          .tr('$_prefixFromLabel.username'),
-                                      filled: true,
-                                      fillColor: Colors.white24,
-                                      border: const OutlineInputBorder(
-                                          borderSide: BorderSide.none)),
-                              validator: FormBuilderValidators.compose(
-                                  [FormBuilderValidators.required()]),
-                            ),
-                          ),
-                          const SizedBox(height: AppStyleDefaultProperties.h),
-                          Consumer<LoginFormProvider>(
-                            builder: (context, state, child) =>
-                                FormBuilderTextField(
-                              name: 'password',
-                              obscureText: state.showPassword,
-                              decoration: ResponsiveLayout.isDesktop(context)
-                                  ? InputDecoration(
-                                      prefixIcon:
-                                          const Icon(AppDefaultIcons.password),
-                                      labelText: context
-                                          .tr('$_prefixFromLabel.password'),
-                                      suffixIcon: IconButton(
-                                        onPressed: () =>
-                                            state.switchShowPassword(
-                                                !state.showPassword),
-                                        splashRadius: 16.0,
-                                        icon: Icon(state.showPassword
-                                            ? AppDefaultIcons.hidePassword
-                                            : AppDefaultIcons.showPassword),
-                                      ),
-                                    )
-                                  : InputDecoration(
-                                      prefixIcon:
-                                          const Icon(AppDefaultIcons.password),
-                                      hintText: context
-                                          .tr('$_prefixFromLabel.password'),
-                                      filled: true,
-                                      fillColor: Colors.white24,
-                                      border: const OutlineInputBorder(
-                                          borderSide: BorderSide.none),
-                                      suffixIcon: IconButton(
-                                        onPressed: () =>
-                                            state.switchShowPassword(
-                                                !state.showPassword),
-                                        splashRadius: 16.0,
-                                        icon: Icon(state.showPassword
-                                            ? AppDefaultIcons.hidePassword
-                                            : AppDefaultIcons.showPassword),
-                                      ),
-                                    ),
-                              validator: FormBuilderValidators.required(),
-                            ),
-                          ),
-                        ],
-                      )
-                    : Row(
-                        children: [
-                          Expanded(
-                            child: FormBuilderTextField(
-                              name: 'username',
-                              decoration: ResponsiveLayout.isDesktop(context)
-                                  ? InputDecoration(
-                                      prefixIcon:
-                                          const Icon(AppDefaultIcons.username),
-                                      labelText: context
-                                          .tr('$_prefixFromLabel.username'))
-                                  : InputDecoration(
-                                      prefixIcon:
-                                          const Icon(AppDefaultIcons.username),
-                                      hintText: context
-                                          .tr('$_prefixFromLabel.username'),
-                                      filled: true,
-                                      fillColor: Colors.white24,
-                                      border: const OutlineInputBorder(
-                                          borderSide: BorderSide.none)),
-                              validator: FormBuilderValidators.compose(
-                                  [FormBuilderValidators.required()]),
-                            ),
-                          ),
-                          const SizedBox(width: AppStyleDefaultProperties.w),
-                          Expanded(
-                            child: Consumer<LoginFormProvider>(
-                              builder: (context, state, child) =>
-                                  FormBuilderTextField(
-                                name: 'password',
-                                obscureText: state.showPassword,
-                                decoration: ResponsiveLayout.isDesktop(context)
-                                    ? InputDecoration(
-                                        prefixIcon: const Icon(
-                                            AppDefaultIcons.password),
-                                        labelText: context
-                                            .tr('$_prefixFromLabel.password'),
-                                        suffixIcon: IconButton(
-                                          onPressed: () =>
-                                              state.switchShowPassword(
-                                                  !state.showPassword),
-                                          splashRadius: 16.0,
-                                          icon: Icon(state.showPassword
-                                              ? AppDefaultIcons.hidePassword
-                                              : AppDefaultIcons.showPassword),
-                                        ),
-                                      )
-                                    : InputDecoration(
-                                        prefixIcon: const Icon(
-                                            AppDefaultIcons.password),
-                                        hintText: context
-                                            .tr('$_prefixFromLabel.password'),
-                                        filled: true,
-                                        fillColor: Colors.white24,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide.none),
-                                        suffixIcon: IconButton(
-                                          onPressed: () =>
-                                              state.switchShowPassword(
-                                                  !state.showPassword),
-                                          splashRadius: 16.0,
-                                          icon: Icon(state.showPassword
-                                              ? AppDefaultIcons.hidePassword
-                                              : AppDefaultIcons.showPassword),
-                                        ),
-                                      ),
-                                validator: FormBuilderValidators.required(),
-                              ),
-                            ),
-                          ),
-                        ],
+                GridView(
+                  primary: false,
+                  padding: EdgeInsets.zero,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          orientation == Orientation.portrait ? 1 : 2,
+                      crossAxisSpacing: AppStyleDefaultProperties.w,
+                      mainAxisSpacing: AppStyleDefaultProperties.h,
+                      mainAxisExtent: AppStyleDefaultProperties.h * 4.8),
+                  shrinkWrap: true,
+                  children: [
+                    Selector<LoginFormProvider, String>(
+                      selector: (_, state) => state.username,
+                      builder: (context, username, child) =>
+                          FormBuilderTextField(
+                        name: 'username',
+                        initialValue: username,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        decoration: ResponsiveLayout.isDesktop(context)
+                            ? InputDecoration(
+                                prefixIcon:
+                                    const Icon(AppDefaultIcons.username),
+                                labelText:
+                                    context.tr('$_prefixFromLabel.username'))
+                            : InputDecoration(
+                                prefixIcon:
+                                    const Icon(AppDefaultIcons.username),
+                                hintText:
+                                    context.tr('$_prefixFromLabel.username'),
+                                filled: true,
+                                fillColor: Colors.white24,
+                                border: const OutlineInputBorder(
+                                    borderSide: BorderSide.none)),
+                        validator: FormBuilderValidators.compose(
+                            [FormBuilderValidators.required()]),
                       ),
+                    ),
+                    Consumer<LoginFormProvider>(
+                      builder: (context, state, child) => FormBuilderTextField(
+                        name: 'password',
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        obscureText: state.showPassword,
+                        decoration: ResponsiveLayout.isDesktop(context)
+                            ? InputDecoration(
+                                prefixIcon:
+                                    const Icon(AppDefaultIcons.password),
+                                labelText:
+                                    context.tr('$_prefixFromLabel.password'),
+                                suffixIcon: IconButton(
+                                  onPressed: () => state
+                                      .switchShowPassword(!state.showPassword),
+                                  splashRadius: 16.0,
+                                  icon: Icon(state.showPassword
+                                      ? AppDefaultIcons.hidePassword
+                                      : AppDefaultIcons.showPassword),
+                                ),
+                              )
+                            : InputDecoration(
+                                prefixIcon:
+                                    const Icon(AppDefaultIcons.password),
+                                hintText:
+                                    context.tr('$_prefixFromLabel.password'),
+                                filled: true,
+                                fillColor: Colors.white24,
+                                border: const OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                suffixIcon: IconButton(
+                                  onPressed: () => state
+                                      .switchShowPassword(!state.showPassword),
+                                  splashRadius: 16.0,
+                                  icon: Icon(state.showPassword
+                                      ? AppDefaultIcons.hidePassword
+                                      : AppDefaultIcons.showPassword),
+                                ),
+                              ),
+                        validator: FormBuilderValidators.required(),
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -266,7 +200,9 @@ class LoginFormWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: AppStyleDefaultProperties.h),
                 Text(
-                  context.tr(_copyRight, namedArgs: {'year': '$_year'}),
+                  '${context.tr(_copyRight, namedArgs: {
+                        'year': '$_year'
+                      })} (v${AppInfo.version})',
                 ),
                 // RichText(
                 //   text: TextSpan(

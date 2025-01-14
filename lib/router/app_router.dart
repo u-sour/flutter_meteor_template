@@ -179,7 +179,9 @@ class AppRouter {
       // If not Initialized and not going to Initialized redirect to Splash
       if (!isInitialized && !isGoingToInit) {
         return splashLocation;
-      } else if (isInitialized && !isConnected && ipAddress == null) {
+      } else if (isInitialized &&
+          !isConnected &&
+          (ipAddress == null || ipAddress.isEmpty)) {
         return connectionLocation;
         // If not onboard and not going to onboard redirect to OnBoarding
       } else if (isInitialized && !isOnboarded && !isGoingToOnboard) {
