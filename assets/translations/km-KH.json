@@ -1,6 +1,22 @@
 {
   "appInfo": {
-    "version": "ជំនាន់: {version}"
+    "label": {
+      "company": "ក្រុមហ៊ុន",
+      "companyTelephone": "លេខទូរសព្ទ័ក្រុមហ៊ុន",
+      "developedBy": "អភិវឌ្ឍដោយ",
+      "publishedBy": "បោះពុម្ពផ្សាយដោយ",
+      "developmentVersion": "ជំនាន់អភិវឌ្ឍ",
+      "latestVersion": "ជំនាន់ចុងក្រោយ"
+    },
+    "value": {
+      "company": "Sour.Dev",
+      "companyTelephone": "+855 10917178",
+      "developers": "ហេង យូសួរ",
+      "publisher": "ហេង យូសួរ",
+      "developmentVersion": "1.0.0",
+      "latestVersion": "1.0.0"
+    },
+    "copyrightBy": "\u00a9 រក្សា​សិទ្ធិ​គ្រប់​យ៉ាង​ដោយ {company} - {year} (v{version})"
   },
   "screens": {
     "connection": {
@@ -145,6 +161,9 @@
           "message": "ម៉ាស៊ីនបោះពុម្ពមិនបានបើក ឬមានបញ្ហាអ្វីជាមួយម៉ាស៊ីនបោះពុម្ពរបស់អ្នក។"
         }
       }
+    },
+    "information": {
+      "title": "ព័ត៌មាន"
     },
     "404": {
       "title": "៤០៤ មិនបានរកឃើញ"

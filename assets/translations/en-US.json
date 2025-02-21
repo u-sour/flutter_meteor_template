@@ -1,6 +1,22 @@
 {
   "appInfo": {
-    "version": "Version: {version}"
+    "label": {
+      "company": "Company",
+      "companyTelephone": "Company Telephone",
+      "developedBy": "Developed By",
+      "publishedBy": "Published By",
+      "developmentVersion": "Development Version",
+      "latestVersion": "Latest Version"
+    },
+    "value": {
+      "company": "Sour.Dev",
+      "companyTelephone": "+855 10917178",
+      "developers": "Heng You Sour",
+      "publisher": "Heng You Sour",
+      "developmentVersion": "1.0.0",
+      "latestVersion": "1.0.0"
+    },
+    "copyrightBy": "\u00a9 All Rights Reserved by {company} - {year} (v{version})"
   },
   "screens": {
     "connection": {
@@ -149,6 +165,9 @@
           "message": "Printer doesn't turn on or something wrong with your printer."
         }
       }
+    },
+    "information": {
+      "title": "INFORMATION"
     },
     "error": {
       "title": "ERROR"

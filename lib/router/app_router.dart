@@ -18,6 +18,7 @@ import '../screens/profile/profile_screen.dart';
 import '../screens/profile/children/my_profile_screen.dart';
 import '../screens/settings_screen.dart';
 import '../screens/printer/printer_screen.dart';
+import '../screens/information_screen.dart';
 import '../widgets/printer/invoice.dart';
 import '../screens/login_screen.dart';
 import '../screens/onboarding_screen.dart';
@@ -120,6 +121,14 @@ class AppRouter {
                 path: SCREENS.settings.toPath,
                 name: SCREENS.settings.toName,
                 builder: (context, state) => const SettingsScreen(),
+              ),
+            ]),
+            // Information
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: SCREENS.information.toPath,
+                name: SCREENS.information.toName,
+                builder: (context, state) => const InformationScreen(),
               ),
             ])
           ]),
